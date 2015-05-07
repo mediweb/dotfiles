@@ -1,0 +1,27 @@
+# common utility functions
+
+brew_install() {
+  # Usage: brew_install pkg [cmd]
+  #
+  # cmd is the command to test if the pkg is already installed.
+  # cmd defaults to pkg if not supplied.
+
+  pkg=$1
+  cmd=${2-$pkg}
+
+  cd $DOTFILES_ROOT
+
+  if test ! $(which $cmd)
+  then
+    echo "II Installing $pkg"
+    brew install $pkg
+  else
+    echo "-- Package $pkg already installed"
+  fi
+
+  cd - > /dev/null
+}
+
+cask_install() {
+  brew cask install $1
+}
