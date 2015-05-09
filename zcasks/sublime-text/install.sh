@@ -1,4 +1,5 @@
 #!/bin/sh
 source "$(dirname $0)/../../scripts/common"
 
-cask_install sublime-text
+brew tap caskroom/versions
+cask_install sublime-text3
