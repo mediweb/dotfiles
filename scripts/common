@@ -15,8 +15,6 @@ brew_install() {
   then
     echo "II Installing $pkg"
     brew install $pkg
-  else
-    echo "-- Package $pkg already installed"
   fi
 
   cd - > /dev/null
