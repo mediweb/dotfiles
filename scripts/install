@@ -1,5 +1,8 @@
 #!/bin/sh
 
+# Update installed brew packages for good measure
+brew update && brew upgrade `brew outdated`
+
 # chruby
 source '/usr/local/share/chruby/chruby.sh'
 source '/usr/local/share/chruby/auto.sh'
