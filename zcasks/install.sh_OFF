@@ -5,100 +5,42 @@ source "$(dirname $0)/../scripts/common"
 
 casks="
 1password
-a-better-finder-rename
-android-file-transfer
-android-studio
-application-loader
 atom
-base
-bettertouchtool
-bonjour-browser
 caffeine
 cathode
 cyberduck
 dash
-dbvisualizer
-delicious-library
 dropbox
 evernote
-fantastical
-filezilla
 firefox
-flash
 freeplane
-genymotion
-gimp
 github
 github-desktop
 gitup
-gnucash
 google-chrome
 google-drive
-google-earth
 heroku-toolbelt
 imageoptim
 iterm2
-java
-kindle
-kobito
 libreoffice
 licecap
 limechat
-macid
-macpaw-gemini
 mactracker
-microsoft-office
-minecraft
-mocksmtp
-mou
-mplayerx
-omnidazzle
-omnidisksweeper
-omnifocus
-omnifocus-clip-o-tron
-omnigraffle
-omnioutliner
-omniplan
-omnipresence
-omniweb
-opera
-origami
-password-gorilla
-pg-commander
-pgadmin3
-postgres
+pgadmin4
+postgresapp
 postico
-reflector
 rubymine
-scansnap-manager-ix500
-screens-connect
-send-to-kindle
 skitch
 skype
 slack
-sophos-anti-virus-home-edition
 sourcetree
-ssh-tunnel-manager
-staruml
-steam
 sublime-text3
 textmate
-vmware-fusion
-ynab
-# balsamiq-mockups
-# clamxav
-# daisydisk
-# divvy
-# dockertoolbox
-# hipchat
-# kaleidoscope
-# mailbox  # TERMINATED
-# mindnode-pro
-# paw
-# remote-desktop-connection
-# remote-desktop-manager
-# virtualbox
+virtualbox
 "
+
+# Has no cask:
+ArgoUML
 
 brew tap caskroom/versions # For sublime-text3
 
@@ -113,49 +55,6 @@ done
 
 
 # NOT AVAILABLE:
-# 3Hub
-# Aperture
-# Adobe
-# Adobe Acrobat XI Pro
-# Adobe Application Manager
-# Adobe Download Assistant
-# Adobe Reader
-# AirRadar
-# Airmail 2
-# Airmail
-# Pixelmator
-# Marked 2
-# Popcorn-Time
-# ScanSnap
-# ScanSnap Online Update.localized
-# Deckset
-# Apple Configurator
-# ArgoUML
-# Battery Monitor
-# Blackmagic Disk Speed Test
-# Boom 2
-# Brother
-# CardMinder
-# Day One
-# Delicious Library 2
-# Delicious Library 3
-# DiscoBrick Lite
-# DxO Perspective
-# Eggscellent
-# Epson Software
-# Fantastical 2
-# LookUp
-# Growl
-# HardwareGrowler
-# MacFamilyTree 7
-# Markdown Pro
-# Microsoft Remote Desktop
-# Memory Monitor
-# Notability
-# P-touch Editor 5.1
-# PeakHour
-# Pocket
-# Postgres_922
 
 
 # Remote Desktop
