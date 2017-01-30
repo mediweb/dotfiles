@@ -1,7 +1,7 @@
 cd $DOTFILES_ROOT
-if ! launchctl list | grep powd > /dev/null
+if launchctl list | grep powd > /dev/null
 then
-  echo "II Installing Pow"
-  curl get.pow.cx | sh
+  echo "II Uninstalling Pow"
+  curl get.pow.cx/uninstall.sh | sh
 fi
 cd - > /dev/null
