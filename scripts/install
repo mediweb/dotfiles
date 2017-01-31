@@ -3,11 +3,6 @@
 # Update installed brew packages for good measure
 brew update && brew upgrade
 
-# chruby
-source '/usr/local/share/chruby/chruby.sh'
-source '/usr/local/share/chruby/auto.sh'
-chruby 2.1.6
-
 set -e
 
 cd "$(dirname $0)"/..

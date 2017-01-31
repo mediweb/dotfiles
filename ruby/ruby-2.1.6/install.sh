@@ -1,8 +1,6 @@
 #!/bin/sh
 
-# chruby
 source '/usr/local/share/chruby/chruby.sh'
-source '/usr/local/share/chruby/auto.sh'
 
 if $(chruby | grep -q "2.1.6")
 then
@@ -11,3 +9,7 @@ else
   echo "  Installing Ruby 2.1.6"
   ruby-install ruby 2.1.6
 fi
+
+echo "  Switching to Ruby 2.1.6"
+source '/usr/local/share/chruby/chruby.sh'
+chruby 2.1.6
