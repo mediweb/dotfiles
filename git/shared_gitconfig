@@ -1,0 +1,143 @@
+[hub]
+    protocol = https
+
+[color]
+    ui = true
+    branch = auto
+    diff = auto
+    status = auto
+
+[alias]
+    promote = !$ZSH/bin/git-promote
+    wtf     = !$ZSH/bin/git-wtf
+    rank-contributors = !$ZSH/bin/git-rank-contributors
+    count   = !git shortlog -sn
+    ap = add -p
+    au = !git ls-files -o | git update-index --add --stdin
+    br = branch
+    ca = commit --amend
+    ci = commit -a
+    cf = commit --fixup
+    co = checkout
+    cp = cherry-pick
+    dc = diff --cached -w
+    dw = diff -w
+    dww = diff --word-diff
+    addw = !git diff -w --no-color | git apply --cached
+    fp = fetch --all
+    lbr = for-each-ref --sort=committerdate refs/heads/ --format='%(HEAD) %(color:red)%(objectname:short)%(color:reset) - %(color:yellow)%(refname:short)%(color:reset) %(contents:subject) %(color:green)(%(committerdate:relative))%(color:reset) %(color:bold blue)<%(authorname)>%(color:reset)'
+    lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cd) %C(bold blue)<%an>%Creset' --abbrev-commit --date=iso
+    lga = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cd) %C(bold blue)<%an>%Creset' --abbrev-commit --date=iso --all
+    lga2 = log --decorate --graph --pretty=oneline --abbrev-commit --date=relative --all
+    lgm = log --graph --pretty=format:'%Creset %s' --abbrev-commit --date=relative
+    # md = merge --no-ff --log
+    ml = merge --log --no-ff
+    mt = mergetool
+    pf = push --force-with-lease
+    praise = blame
+    ra = rebase --abort
+    rb = rebase
+    rc = rebase --continue
+    ri = rebase --interactive --autosquash
+    st = status
+    resetall = !git fetch -p --all ; git stash ; git checkout master ; git branch -lf develop origin/develop ; git branch -lf staging origin/staging ; git checkout develop; git branch -lf master origin/master
+    sw = update-index --skip-worktree
+    nsw = update-index --no-skip-worktree
+
+
+    # Gitflow
+    feature = flow feature
+    # ft = flow feature
+    ffp = flow feature publish
+    ff = flow feature finish
+    fs = flow feature start
+    release = flow release
+    # rl = flow release
+    rf = flow release finish
+    rs = flow release start
+    hotfix = flow hotfix
+    # ho = flow hotfix
+    hs = flow hotfix start
+    hf = flow hotfix finish
+    # Release push
+    rp = push origin develop master
+
+[apply]
+    whitespace = fix
+
+[branch]
+    autosetuprebase = always
+
+[pager]
+    color = true
+    log = diff-highlight | less
+    show = diff-highlight | less
+    diff = diff-highlight | less
+
+[status]
+    color = auto
+
+[core]
+    excludesfile = ~/.gitignore
+    # editor = vim
+
+[diff]
+  color = auto
+  rename = copies
+  tool = Kaleidoscope
+
+[difftool]
+  prompt = false
+
+# [merge]
+# tool = Kaleidoscope
+
+[mergetool]
+  keepBackup = false
+
+# SourceTree
+[difftool "sourcetree"]
+  cmd = opendiff \"$LOCAL\" \"$REMOTE\"
+  path =
+[mergetool "sourcetree"]
+  cmd = /Applications/SourceTree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
+  trustExitCode = true
+
+# Kaleidoscope
+# [difftool "Kaleidoscope"]
+#   cmd = ksdiff --partial-changeset --relative-path \"$MERGED\" -- \"$LOCAL\" \"$REMOTE\"
+# [mergetool "Kaleidoscope"]
+
+# OpenDiff
+# [mergetool "opendiff"]
+#     cmd = "opendiff \"$LOCAL\"  \"$REMOTE\" \"$(if test -f \"$BASE\"; then echo \"--ancestor $BASE\"; else echo \"--ancestor $LOCAL\"; fi)\" --merge=\"$MERGED\" "
+  cmd = ksdiff --merge --output \"$MERGED\" --base \"$BASE\" -- \"$LOCAL\" --snapshot \"$REMOTE\" --snapshot
+  trustexitcode = true
+
+[help]
+    autocorrect = 1
+
+[push]
+  default = current
+
+[filter "media"]
+  clean = git media clean %f
+  smudge = git media smudge %f
+  required = true
+
+[filter "hawser"]
+  clean = git hawser clean %f
+  smudge = git hawser smudge %f
+  required = true
+
+[mailmap]
+  file = ~/.mailmap
+
+[filter "lfs"]
+  clean = git-lfs clean %f
+  smudge = git-lfs smudge %f
+  required = true
+
+[interactive]
+    # diffFilter = "git diff --color-words"
+    diffFilter = "diff-highlight"
