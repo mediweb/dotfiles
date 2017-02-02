@@ -2,6 +2,10 @@
 
 export HOMEBREW_CASK_OPTS="--appdir=/Applications"
 
+load_nvm() {
+  export NVM_DIR="${HOME}/.nvm"
+  [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+}
 
 brew_install() {
   # Usage: brew_install pkg [cmd]
