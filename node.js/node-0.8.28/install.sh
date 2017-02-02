@@ -1,8 +1,8 @@
 #!/bin/sh
 
 cd $DOTFILES_ROOT
-export NVM_DIR="${HOME}/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+load_nvm
+
 if ! $(nvm ls | grep -q "v0.8.28")
 then
   echo "II Installing Node.js v0.8.28"
