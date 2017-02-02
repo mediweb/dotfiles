@@ -2,6 +2,7 @@
 
 cd "$(dirname $0)"/..
 
-# brew install zsh
-# chsh -s /usr/local/bin/zsh
-# chsh -s /bin/zsh
+if [ "$SHELL" -ne "/bin/zsh" ]; then
+  echo "Setting Zsh as the default shell..."
+  chsh -s /bin/zsh
+fi
