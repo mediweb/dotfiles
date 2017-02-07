@@ -32,6 +32,10 @@ if [ "$(uname -s)" == "Darwin" ] ; then
     echo "We will install a recent Zsh using Homebrew."
     brew install zsh
     default_shell="$(brew --prefix)/bin/zsh"
+    if ! grep -Fxq "${default_shell}" /etc/shells
+    then
+      sudo /bin/sh -c "echo ${default_shell} >> /etc/shells"
+    fi
   elif [ "$OS_MAJOR_VERSION" -eq 16 ] ; then
     # MacOS Sierra now comes with a recent Zsh (5.2, so we do not need
     # to `brew install zsh` anymore.
