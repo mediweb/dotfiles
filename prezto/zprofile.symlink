@@ -17,8 +17,12 @@ fi
 # Editors
 #
 
-export EDITOR='nano'
-export VISUAL='nano'
+if [ -s '/usr/local/bin/subl' ]; then
+  export VISUAL='/usr/local/bin/subl --wait'
+else
+  export VISUAL='/usr/bin/vim'
+fi
+export EDITOR='/usr/bin/vim'
 export PAGER='less'
 
 #
