@@ -137,6 +137,9 @@ config/initializers/secret_token.rb
 # these should all be checked in to normalize the environment:
 # Gemfile.lock, .ruby-version, .ruby-gemset
 
+# at MediWeb, we ignore .ruby-version
+.ruby-version
+
 # unless supporting rvm < 1.11.0 or doing something fancy, ignore this:
 .rvmrc
 
@@ -230,6 +233,7 @@ build-iPhoneSimulator/
 
 # IntelliJ
 /out/
+.idea/
 
 # mpeltonen/sbt-idea plugin
 .idea_modules/
