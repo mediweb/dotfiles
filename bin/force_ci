@@ -1,0 +1,9 @@
+#!/bin/bash
+
+BASE=${1:-develop}
+
+COMMITS=`git log  --pretty=format:"%h" ${BASE}.. | sed '1!G;h;$!d' | sed -e '$ d'`
+for commit in ${COMMITS}
+do
+  git push origin ${commit}:spike/force_ci_run --force-with-lease
+done
