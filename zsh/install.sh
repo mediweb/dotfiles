@@ -5,6 +5,7 @@ cd "$(dirname $0)"/..
 
 identify_os() {
   local OS_NAMES
+  OS_NAMES[17]="High Sierra"
   OS_NAMES[16]="Sierra"
   OS_NAMES[15]="El Capitan"
   OS_NAMES[14]="Yosemite"
@@ -27,8 +28,7 @@ if [ "$(uname -s)" == "Darwin" ] ; then
   identify_os
   if [ "$OS_MAJOR_VERSION" -lt 14 ] ; then
     echo "Your OS ($OS_NAME) is too old. Please upgrade."; exit 1
-  elif [ "$OS_MAJOR_VERSION" -lt 16 ] ; then
-    echo "Your OS ($OS_NAME) is a bit old."
+  elif [ "$OS_MAJOR_VERSION" -lt 18 ] ; then
     echo "We will install a recent Zsh using Homebrew."
     brew install zsh
     default_shell="$(brew --prefix)/bin/zsh"
@@ -36,11 +36,6 @@ if [ "$(uname -s)" == "Darwin" ] ; then
     then
       sudo /bin/sh -c "echo ${default_shell} >> /etc/shells"
     fi
-  elif [ "$OS_MAJOR_VERSION" -eq 16 ] ; then
-    # MacOS Sierra now comes with a recent Zsh (5.2, so we do not need
-    # to `brew install zsh` anymore.
-    echo "Your OS ($OS_NAME) has a recent Zsh, so we will be using that."
-    default_shell="/bin/zsh"
   else
     echo "UNKNOWN OS"; exit 1
   fi
