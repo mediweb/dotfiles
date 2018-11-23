@@ -5,6 +5,7 @@ cd "$(dirname $0)"/..
 
 identify_os() {
   local OS_NAMES
+  OS_NAMES[18]="Mojave"
   OS_NAMES[17]="High Sierra"
   OS_NAMES[16]="Sierra"
   OS_NAMES[15]="El Capitan"
@@ -28,7 +29,7 @@ if [ "$(uname -s)" == "Darwin" ] ; then
   identify_os
   if [ "$OS_MAJOR_VERSION" -lt 14 ] ; then
     echo "Your OS ($OS_NAME) is too old. Please upgrade."; exit 1
-  elif [ "$OS_MAJOR_VERSION" -lt 18 ] ; then
+  elif [ "$OS_MAJOR_VERSION" -lt 19 ] ; then
     # Note: Sierra came with a recent enough Zsh (5.2) but it had a bug.
     # See: See: https://github.com/zimfw/zimfw/issues/227
     # So we install Zsh from Brew anyway.
