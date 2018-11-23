@@ -34,3 +34,11 @@ cask_install() {
     brew cask install $pkg
   fi
 }
+
+gem_install() {
+  gem=$1
+  if ! $(gem list $gem -i)
+  then
+    gem install $gem
+  fi
+}
