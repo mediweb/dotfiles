@@ -28,8 +28,8 @@
 .LSOverride
 
 # Icon must end with two \r
-Icon
-
+# Edit with vi. See https://stackoverflow.com/a/33974028
+Icon[]
 
 # Thumbnails
 ._*
@@ -117,7 +117,7 @@ capybara-*.html
 /public/system
 /coverage/
 /spec/tmp
-**.orig
+*.orig
 rerun.txt
 pickle-email-*.html
 
