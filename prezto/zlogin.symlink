@@ -1,3 +1,4 @@
+echo ">>> .zlogin"
 #
 # Executes commands at login post-zshrc.
 #

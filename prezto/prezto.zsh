@@ -1,3 +1,5 @@
+echo "  >>> prezto.zsh"
+
 #
 # Executes commands at the start of an interactive session.
 #
@@ -12,3 +14,5 @@ fi
 
 # Customize to your needs...
 prompt steeef
+
+echo "  <<< prezto.zsh"
