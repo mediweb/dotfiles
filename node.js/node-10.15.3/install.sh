@@ -1,6 +1,6 @@
 #!/bin/sh
 
-cd $DOTFILES_ROOT
+source "$(dirname $0)/../../scripts/common"
 load_nvm
 
 if ! $(nvm ls | grep -q "v10.15.3")
