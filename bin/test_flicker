@@ -2,5 +2,5 @@
 
 for i in {0..9}
 do
-  git push origin HEAD:spike/test_flicker$i
+  git push --force-with-lease origin HEAD:spike/test_flicker$i &
 done
