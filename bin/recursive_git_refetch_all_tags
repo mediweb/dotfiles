@@ -1,0 +1,7 @@
+find . -type d -path "*/.git/refs" -print0 \
+| while IFS= read -r -d '' refs
+do
+  repo=${refs%".git/refs"}
+  git -C $repo tag -d $(git -C $repo tag -l)
+  git -C $repo fetch
+done
