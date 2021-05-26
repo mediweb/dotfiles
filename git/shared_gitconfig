@@ -41,7 +41,7 @@
     rc = rebase --continue
     ri = rebase --interactive --autosquash
     st = status
-    resetall = !git fetch -p --all ; git stash ; git checkout master ; git branch -lf develop origin/develop ; git branch -lf staging origin/staging ; git checkout develop; git branch -lf master origin/master
+    resetall = !git fetch -p --all ; git stash ; git checkout main ; git branch -lf develop origin/develop ; git branch -lf staging origin/staging ; git checkout develop; git branch -lf main origin/main
     sw = update-index --skip-worktree
     nsw = update-index --no-skip-worktree
 
@@ -61,7 +61,7 @@
     hs = flow hotfix start
     hf = flow hotfix finish
     # Release push
-    rp = push origin develop master
+    rp = push origin develop main
 
 [apply]
     whitespace = fix
