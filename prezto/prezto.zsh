@@ -12,3 +12,6 @@ fi
 
 # Customize to your needs...
 prompt steeef
+
+# Add user path
+export PATH=$PATH:~/bin
