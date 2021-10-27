@@ -1,0 +1,119 @@
+#!/usr/bin/env bash
+
+set -e # Exit immediately if a command exits with a non-zero status
+set -u # Treat unset variables as an error when substituting
+# set -x # Similar to verbose mode (-v), but expands commands
+set -o pipefail # Causes a pipeline to return the exit status of the last command in the pipe that returned a non-zero return value.
+
+HEROKU=/usr/local/bin/heroku
+JQ=/usr/local/bin/jq
+APPS_PREFIX=mw-3bees-monolith-pr-
+CUTOFF_TIME=1H
+
+CUTOFF_AT=$(TZ=UTC date -v -${CUTOFF_TIME} "+%Y-%m-%dT%H:%M:%SZ")
+
+get_pr_apps() {
+  apps=$($HEROKU apps|cut -d " " -f 1|grep ${APPS_PREFIX})
+}
+
+downgrade_apps() {
+  for app in ${apps}; do
+    get_app_info
+    downgrade_app_if_applicable
+  done
+}
+
+get_app_info() {
+  app_created_at=$($HEROKU apps:info --json ${app} | $JQ -r ".app.created_at")
+  dyno_size=$($HEROKU apps:info --json ${app} | $JQ -r ".dynos[0].size")
+}
+
+app_not_already_free() {
+  if [ "${dyno_size}" = "Free" ]; then
+    if [ $verbose -ge 2 ]; then
+      echo "${app}: already on Free"
+    fi
+    return 1
+  fi
+  return 0
+}
+
+app_older_than_cutoff() {
+  if [ "${app_created_at}" \> "${CUTOFF_AT}" ]; then
+    if [ $verbose -ge 2 ]; then
+      color red "${app}: too recent, leaving it alone\n"
+    fi
+    return 1
+  fi
+  return 0
+}
+
+downgrade_app_if_applicable() {
+  app_not_already_free || return
+  app_older_than_cutoff || return
+
+  if [ $verbose -ge 1 ]; then
+    color green "${app}: downgrade from ${dyno_size} to Free\n"
+  fi
+  $HEROKU ps:resize web=free -a ${app}
+}
+
+main() {
+  get_pr_apps && \
+  downgrade_apps
+}
+
+################################################################################
+
+verbose=0
+
+parse_options() {
+  while getopts "h?v" opt; do
+    case "$opt" in
+    h|\?)
+      show_help
+      exit 0
+      ;;
+    v) ((verbose++))
+      ;;
+    esac
+    :
+  done
+}
+
+show_help() {
+  printf "\nUsage: $0 [-v]\n\n"
+  printf "Set Heroku monolith PR apps to Free dynos.\n\n"
+  printf "\t-h\tShow this help message.\n"
+  printf "\t-v\tVerbose output.\n"
+  printf "\t-vv\tMore verbose output.\n"
+  exit 1
+}
+
+die() {
+  echo $@
+  exit 1
+}
+
+color() {
+  printf ${!1}
+  shift
+  printf "$@"
+  printf $nocolor
+}
+
+# Reset
+nocolor='\033[0m'         # Text Reset
+
+# Regular Colors
+black='\033[0;30m'        # Black
+red='\033[0;31m'          # Red
+green='\033[0;32m'        # Green
+yellow='\033[0;33m'       # Yellow
+blue='\033[0;34m'         # Blue
+purple='\033[0;35m'       # Purple
+cyan='\033[0;36m'         # Cyan
+white='\033[0;37m'        # White
+
+parse_options "$@"
+main "$@" && exit 0 || exit 1
