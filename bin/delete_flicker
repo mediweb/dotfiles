@@ -1,0 +1,12 @@
+#!/bin/bash
+
+git push origin --delete spike/test_flicker0 \
+  spike/test_flicker1 \
+  spike/test_flicker2 \
+  spike/test_flicker3 \
+  spike/test_flicker4 \
+  spike/test_flicker5 \
+  spike/test_flicker6 \
+  spike/test_flicker7 \
+  spike/test_flicker8 \
+  spike/test_flicker9
