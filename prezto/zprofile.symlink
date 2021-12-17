@@ -17,8 +17,8 @@ fi
 # Editors
 #
 
-if [ -s '/usr/local/bin/subl' ]; then
-  export VISUAL='/usr/local/bin/subl --wait'
+if [ -s '/usr/local/bin/code' ]; then
+  export VISUAL='/usr/local/bin/code --wait'
 else
   export VISUAL='/usr/bin/vim'
 fi
