@@ -1,0 +1,13 @@
+#!/bin/sh
+if [[ $# -eq 0 ]] ; then
+  echo "Usage: $0 app_name"
+  exit 1
+fi
+PS_NUM=$(ps aux|grep puma-dev|grep $1|awk '{print $2}')
+if [[ $PS_NUM = "" ]] ; then
+  echo "Found no puma-dev process for $1"
+  exit 1
+fi
+echo "Killing process $PS_NUM"
+kill ${PS_NUM}
+exit 0
