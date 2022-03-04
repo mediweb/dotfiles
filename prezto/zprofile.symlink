@@ -24,6 +24,7 @@ else
 fi
 export EDITOR='/usr/bin/vim'
 export PAGER='less'
+export BETTER_ERRORS_EDITOR='code'
 
 #
 # Language
